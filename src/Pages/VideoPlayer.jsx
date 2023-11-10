@@ -239,27 +239,22 @@ const VideoPlayer = () => {
 	};
 
 	return (
-		<div className="app">
-			<div className="input_container">
-				<label htmlFor="fileInput">Choose Video</label>
+		<div className="w-screen flex flex-col justify-center items-center h-screen bg-gray-900">
+			<div className="flex flex-col items-center h-15 w-75 rounded-md shadow-md transition-colors duration-300">
 				<input
 					type="file"
 					accept="video/*"
 					onChange={handleVideoSelect}
 					id="fileInput"
+					className="w-87 max-w-full text-gray-900 p-1.25 bg-white rounded-md border-gray-700"
 				/>
 			</div>
 
-			<div className="video">
+			<div className="flex justify-around w-full max-w-6xl mt-8">
 				<div
-					className="video-container"
+					className="relative text-center flex flex-col justify-center items-center rounded-md shadow-md transition-shadow duration-300 hover:shadow-lg"
 					style={{
 						position: "relative",
-						textAlign: "center",
-						display: "flex",
-						flexDirection: "column",
-						justifyContent: "center",
-						alignItems: "center",
 					}}
 				>
 					<canvas
@@ -268,19 +263,10 @@ const VideoPlayer = () => {
 						height="360"
 						onClick={togglePlayPause}
 					/>
-					<div
-						id="waveform"
-						style={{
-							marginTop: "15px",
-							width: "100%",
-						}}
-					/>
+					<div id="waveform" className="mt-3.75 w-full" />
 					<p
+						className="absolute top-0 left-2.5 text-gray-400"
 						style={{
-							position: "absolute",
-							top: 0,
-							left: "10px",
-							color: "#868686",
 							zIndex: -1,
 						}}
 					>
@@ -292,11 +278,8 @@ const VideoPlayer = () => {
 							size="3x"
 							color="#ffffff"
 							onClick={togglePlayPause}
+							className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 							style={{
-								position: "absolute",
-								top: "50%",
-								left: "50%",
-								transform: "translate(-50%, -50%)",
 								zIndex: 1,
 							}}
 						/>
@@ -306,11 +289,8 @@ const VideoPlayer = () => {
 							size="3x"
 							color="#ffffff"
 							onClick={togglePlayPause}
+							className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
 							style={{
-								position: "absolute",
-								top: "50%",
-								left: "50%",
-								transform: "translate(-50%, -50%)",
 								zIndex: 1,
 							}}
 						/>
@@ -318,9 +298,9 @@ const VideoPlayer = () => {
 				</div>
 
 				{videoMetadata && (
-					<div className="meta-container">
-						<h2>Video Metadata</h2>
-						<div className="txt-c">
+					<div className="flex flex-col border-2 border-blue-500 h-62.5 justify-start p-5 rounded-md ml-5">
+						<h2 className="text-blue-500 font-bold">Video Metadata</h2>
+						<div className="text-white mt-2.5">
 							Video Name: {videoName}
 							<br />
 							Duration: {formatDuration(videoMetadata.duration)}

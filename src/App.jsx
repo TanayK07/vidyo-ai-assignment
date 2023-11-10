@@ -1,9 +1,4 @@
 import React from "react";
-import {
-	ChakraProvider,
-	SliderFilledTrack,
-	extendTheme,
-} from "@chakra-ui/react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./routes";
 
@@ -19,9 +14,9 @@ function App() {
 				overflow: "hidden",
 			}}
 		>
-			<ChakraProvider>
+			<>
 				<RouterProvider router={router} />
-			</ChakraProvider>
+			</>
 		</div>
 	);
 }
