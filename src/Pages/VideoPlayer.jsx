@@ -5,6 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 const VideoPlayer = () => {
+	const [videoName, setVideoName] = useState(null);
+
 	const videoRef = useRef(null);
 	const canvasRef = useRef(null);
 	const [isPlaying, setIsPlaying] = useState(false);
@@ -41,6 +43,26 @@ const VideoPlayer = () => {
 		};
 	}, []);
 
+	const formatDuration = (seconds) => {
+		const hours = Math.floor(seconds / 3600);
+		const minutes = Math.floor((seconds % 3600) / 60);
+		const remainingSeconds = Math.floor(seconds % 60);
+
+		let formattedDuration = "";
+
+		if (hours > 0) {
+			formattedDuration += `${hours}h `;
+		}
+
+		if (minutes > 0 || hours > 0) {
+			formattedDuration += `${minutes}m `;
+		}
+
+		formattedDuration += `${remainingSeconds}s`;
+
+		return formattedDuration.trim();
+	};
+
 	const handleVideoSelect = async (event) => {
 		const file = event.target.files[0];
 
@@ -52,6 +74,8 @@ const VideoPlayer = () => {
 		// console.log("Here is the file", url);
 
 		const video = videoRef.current;
+		setVideoName(file.name);
+
 		video.src = url;
 		setVideoSrc(url);
 
@@ -194,11 +218,31 @@ const VideoPlayer = () => {
 		}
 	}, [videoSrc]);
 
+	const getFileTypeDescription = (url) => {
+		const extension = url.split(".").pop();
+
+		// Map common video file extensions to user-friendly descriptions
+		const fileTypeMap = {
+			mp4: "MP4 Video",
+			webm: "WebM Video",
+			// Add more file types as needed
+		};
+
+		return fileTypeMap[extension] || "Unknown File Type";
+	};
+
 	return (
 		<div className="app">
 			<div className="input_container">
-				<input type="file" accept="video/*" onChange={handleVideoSelect} />
+				<label htmlFor="fileInput">Choose Video</label>
+				<input
+					type="file"
+					accept="video/*"
+					onChange={handleVideoSelect}
+					id="fileInput"
+				/>
 			</div>
+
 			<div className="video">
 				<div className="video-container">
 					<canvas
@@ -259,11 +303,13 @@ const VideoPlayer = () => {
 					<div className="meta-container">
 						<h2>Video Metadata</h2>
 						<div>
-							Duration: {videoMetadata.duration} sec
+							Video Name: {videoName}
 							<br />
-							Height: {videoMetadata.height}
+							Duration: {formatDuration(videoMetadata.duration)}
 							<br />
-							Width: {videoMetadata.width}
+							Height: {videoMetadata.height} px
+							<br />
+							Width: {videoMetadata.width} px
 							<br />
 						</div>
 					</div>
