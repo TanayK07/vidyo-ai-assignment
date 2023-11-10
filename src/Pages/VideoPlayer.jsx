@@ -18,11 +18,21 @@ const VideoPlayer = () => {
 
 	useEffect(() => {
 		videoRef.current = document.createElement("video");
+
 		wavesurferRef.current = WaveSurfer.create({
 			container: "#waveform",
-			waveColor: "violet",
-			progressColor: "purple",
+			waveColor: "#3498db", // Adjust wave color
+			progressColor: "#2980b9", // Adjust progress color
 			backend: "MediaElement",
+			barWidth: 2, // Adjust the width of the waveform bars
+			barHeight: 4, // Adjust the height of the waveform bars
+			cursorWidth: 1, // Adjust the width of the cursor
+			cursorColor: "#ffffff", // Adjust the color of the cursor
+			responsive: true, // Make the waveform responsive
+			height: 100, // Set the height of the waveform container
+			normalize: true, // Normalize the amplitude of the waveform
+			interact: false, // Disable user interaction
+			hideScrollbar: true, // Hide the horizontal scrollbar
 		});
 
 		wavesurferRef.current.on("seek", (progress) => {
@@ -244,7 +254,17 @@ const VideoPlayer = () => {
 			</div>
 
 			<div className="video">
-				<div className="video-container">
+				<div
+					className="video-container"
+					style={{
+						position: "relative",
+						textAlign: "center",
+						display: "flex",
+						flexDirection: "column",
+						justifyContent: "center",
+						alignItems: "center",
+					}}
+				>
 					<canvas
 						ref={canvasRef}
 						width="640"
@@ -299,6 +319,7 @@ const VideoPlayer = () => {
 						/>
 					)}
 				</div>
+
 				{videoMetadata && (
 					<div className="meta-container">
 						<h2>Video Metadata</h2>
