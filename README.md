@@ -1,4 +1,3 @@
-```markdown
 # Video Player React App (vidyo-ai)
 
 
