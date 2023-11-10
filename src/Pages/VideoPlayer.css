@@ -6,15 +6,18 @@
 
 body {
 	margin: 20px 60px;
+	width: 100%;
+	height: 100%;
 }
 
 .app {
+	width: 100vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	background-color: #ecf0f1;
+	background-color: #181a24;
 }
 
 .video-container,
@@ -43,24 +46,26 @@ body {
 	border: 2px solid var(--primary-color);
 	height: 250px;
 	justify-content: flex-start;
-	padding: 20px; /* Increased padding */
+	padding: 20px;
 	border-radius: 5px;
 	margin-left: 20px;
 }
 
 .meta-container h2 {
 	color: var(--primary-color);
-	font-weight: bold; /* Added font-weight */
+	font-weight: bold;
+}
+.txt-c {
+	color: white !important;
 }
 
 .meta-container div {
 	color: #333;
 	font-size: 16px;
-	font-weight: bold; /* Added font-weight */
-	margin-top: 10px; /* Added margin-top */
+	font-weight: bold;
+	margin-top: 10px;
 }
 
-/* File Upload Styles */
 .input_container,
 .drop-container {
 	display: flex;
@@ -95,7 +100,6 @@ label:hover {
 	background-color: #27ae60;
 }
 
-/* Updated styles for the drop zone */
 .drop-container {
 	position: relative;
 	padding: 20px;

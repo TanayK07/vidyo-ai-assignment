@@ -21,18 +21,18 @@ const VideoPlayer = () => {
 
 		wavesurferRef.current = WaveSurfer.create({
 			container: "#waveform",
-			waveColor: "#3498db", // Adjust wave color
-			progressColor: "#2980b9", // Adjust progress color
+			waveColor: "#3498db",
+			progressColor: "#2980b9",
 			backend: "MediaElement",
-			barWidth: 2, // Adjust the width of the waveform bars
-			barHeight: 4, // Adjust the height of the waveform bars
-			cursorWidth: 1, // Adjust the width of the cursor
-			cursorColor: "#ffffff", // Adjust the color of the cursor
-			responsive: true, // Make the waveform responsive
-			height: 100, // Set the height of the waveform container
-			normalize: true, // Normalize the amplitude of the waveform
-			interact: false, // Disable user interaction
-			hideScrollbar: true, // Hide the horizontal scrollbar
+			barWidth: 2,
+			barHeight: 4,
+			cursorWidth: 1,
+			cursorColor: "#ffffff",
+			responsive: true,
+			height: 100,
+			normalize: true,
+			interact: false,
+			hideScrollbar: true,
 		});
 
 		wavesurferRef.current.on("seek", (progress) => {
@@ -81,7 +81,6 @@ const VideoPlayer = () => {
 		}
 
 		const url = URL.createObjectURL(file);
-		// console.log("Here is the file", url);
 
 		const video = videoRef.current;
 		setVideoName(file.name);
@@ -231,11 +230,9 @@ const VideoPlayer = () => {
 	const getFileTypeDescription = (url) => {
 		const extension = url.split(".").pop();
 
-		// Map common video file extensions to user-friendly descriptions
 		const fileTypeMap = {
 			mp4: "MP4 Video",
 			webm: "WebM Video",
-			// Add more file types as needed
 		};
 
 		return fileTypeMap[extension] || "Unknown File Type";
@@ -323,7 +320,7 @@ const VideoPlayer = () => {
 				{videoMetadata && (
 					<div className="meta-container">
 						<h2>Video Metadata</h2>
-						<div>
+						<div className="txt-c">
 							Video Name: {videoName}
 							<br />
 							Duration: {formatDuration(videoMetadata.duration)}
